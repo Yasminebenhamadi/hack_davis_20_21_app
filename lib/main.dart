@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hackdavis2021app/HomeScreen.dart';
+import 'package:hackdavis2021app/SignInScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,23 +12,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData.light().copyWith( //this is where we specify the app's themem data
+          primaryColor: Color(0xFF0A0E21), //tab bar, top bar color
+          accentColor: Color(0xFF3E3C3E),
+          scaffoldBackgroundColor: Color(0xFF0A0E21),
+          textTheme: TextTheme(body1: TextStyle(color: Colors.white)),
+          sliderTheme: SliderTheme.of(context).copyWith(
+            thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+            overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
+            thumbColor: Colors.pink,
+            activeTrackColor: Colors.pink,
+            overlayColor: Color(0x29EB1555),
+          )),
+      initialRoute: HomeScreen.id,
+      routes: { //this is list of route nagivating between different screens
+        HomeScreen.id: (context) => HomeScreen(),
+        SignInScreen.id: (context) => SignInScreen(),
+
+      },
     );
   }
 }

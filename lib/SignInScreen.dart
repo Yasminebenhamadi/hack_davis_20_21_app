@@ -1,6 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 class SignInScreen extends StatefulWidget {
+
+  static const String id = "SignInScreen";
+
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
