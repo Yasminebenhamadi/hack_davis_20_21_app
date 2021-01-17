@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'dart:developer';
 
 class HobbyScreen extends StatefulWidget {
 
@@ -19,17 +20,14 @@ class _HobbyScreenState extends State<HobbyScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getCurrUser();
+    log("data: $_auth");
+
+    //getCurrUser();
+    loggedInUser =  _auth.currentUser;
+
   }
 
-  void getCurrUser() async
-  {
-    try {
-      //final User user = await _auth.currentUser;
-      loggedInUser = await _auth.currentUser;
 
-    } catch (e) {print(e);}
-  }
 
   @override
   Widget build(BuildContext context) {
