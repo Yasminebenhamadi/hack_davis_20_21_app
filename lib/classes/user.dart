@@ -30,4 +30,10 @@ class User{
       _hobbiesKey: _hobbies,
     };
   }
+
+  String get name => _name;
+
+  String get userID => _userID;
+
+
 }

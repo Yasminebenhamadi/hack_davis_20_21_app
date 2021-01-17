@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Message implements Comparable<Message> {
   String _messageID;
   String _message;
@@ -7,20 +9,35 @@ class Message implements Comparable<Message> {
   bool _sent;
   bool _seen;
   bool _delivered;
+  final String _messageKey = 'Message';
+  final String _timeKey = 'DateTime';
+  final String _senderIDKey = 'SenderID';
+  final String _receiverIDKey = 'ReceiverID';
+  final String _deliveredKey = 'Delivered';
+  final String _seenKey = 'Seen';
+  final String _sentKey = 'Sent';
 
-  Message.old(this._message,this._senderID,this._receiverID,this._time,this._sent,this._seen,this._delivered);
-  Message.brandNew(this._messageID,this._message,this._senderID,this._receiverID,this._time,this._sent,this._seen,this._delivered);
+  Message(this._message,this._senderID,this._receiverID,this._time,this._sent,this._seen,this._delivered);
+  Message.old(this._messageID,Map<String,dynamic> data){
+    _message = data[_messageKey];
+    _senderID = data[_senderIDKey];
+    _receiverID = data[_receiverIDKey];
+    Timestamp timestamp = data[_timeKey];
+    _time = timestamp.toDate();
+    _sent = data[_sentKey];
+    _seen = data[_seenKey];
+    _delivered = data[_deliveredKey];
+  }
 
   Map<String,dynamic> messageToMap (){
     return {
-      'MessageID' : this._messageID,
-      'Message' : this._message,
-      //TODO 'DateTime' : Timestamp.fromDate(this._dateTime),
-      'SenderID' : this._senderID,
-      'ReceiverID' : this._receiverID,
-      'Delivered' : this._delivered,
-      'Seen' : this._seen,
-      'Sent': this._sent,
+      _messageKey : this._message,
+      _timeKey : Timestamp.fromDate(this._time),
+      _senderIDKey : this._senderID,
+      _receiverIDKey : this._receiverID,
+      _deliveredKey : this._delivered,
+      _seenKey : this._seen,
+      _sentKey: this._sent,
     };
   }
 
@@ -62,5 +79,12 @@ class Message implements Comparable<Message> {
   String get senderID => _senderID;
 
   DateTime get time => _time;
+
+  String get deliveredKey => _deliveredKey;
+
+  String get sentKey => _sentKey;
+
+  String get seenKey => _seenKey;
+
 
 }
