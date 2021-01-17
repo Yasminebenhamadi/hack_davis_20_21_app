@@ -1,8 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackdavis2021app/HomeScreen.dart';
 import 'package:hackdavis2021app/SignInScreen.dart';
+import 'RegistrationScreen.dart';
+import 'package:hackdavis2021app/HobbiesScreen.dart';
 
-void main() {
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -28,6 +34,9 @@ class MyApp extends StatelessWidget {
       routes: { //this is list of route nagivating between different screens
         HomeScreen.id: (context) => HomeScreen(),
         SignInScreen.id: (context) => SignInScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        HobbyScreen.id: (context) => HobbyScreen()
+
 
       },
     );
