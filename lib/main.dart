@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackdavis2021app/HomeScreen.dart';
 import 'package:hackdavis2021app/SignInScreen.dart';
+import 'package:hackdavis2021app/chatScreen.dart';
+import 'package:hackdavis2021app/classes/user.dart';
 import 'RegistrationScreen.dart';
 import 'package:hackdavis2021app/HobbiesScreen.dart';
 
@@ -14,9 +16,12 @@ void main() async
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  String senderID = 'Jm2mHtT8JyVi6uYmeqCN';
+  String rID = 'SlRMxj8izcHxomDKFgza';
+  String cnctionID = '91WNYqwkONR21brAHUdy';
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return /*MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData.light().copyWith( //this is where we specify the app's themem data
           primaryColor: Color(0xFF0A0E21), //tab bar, top bar color
@@ -30,16 +35,16 @@ class MyApp extends StatelessWidget {
             activeTrackColor: Colors.pink,
             overlayColor: Color(0x29EB1555),
           )),
-      initialRoute: HomeScreen.id,
+      initialRoute: ChatScreen.id,
       routes: { //this is list of route nagivating between different screens
         HomeScreen.id: (context) => HomeScreen(),
         SignInScreen.id: (context) => SignInScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
-        HobbyScreen.id: (context) => HobbyScreen()
-
-
+        HobbyScreen.id: (context) => HobbyScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
       },
-    );
+    );*/
+    ChatScreen(connectionID: cnctionID,sender: User(senderID,'yasmine',19,DateTime.now()),receiver: User(rID,'yasmine',19,DateTime.now()),);
   }
 }
 

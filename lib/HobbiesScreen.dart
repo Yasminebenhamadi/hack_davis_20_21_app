@@ -21,13 +21,9 @@ class _HobbyScreenState extends State<HobbyScreen> {
     // TODO: implement initState
     super.initState();
     log("data: $_auth");
-
     //getCurrUser();
     loggedInUser =  _auth.currentUser;
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
