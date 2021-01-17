@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "141453456410",
+    "project_id": "hackdavis-2021-1a228",
+    "storage_bucket": "hackdavis-2021-1a228.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141453456410:android:24bcdfb03e72f2055c8da3",
+        "android_client_info": {
+          "package_name": "com.yasminebenhamadi.hackdavis2021app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141453456410-nk9e22p101j5f3bd8m9hcn7josv693j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTz50XyffwHRuTneeRytFAJWOC67r9JYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141453456410-nk9e22p101j5f3bd8m9hcn7josv693j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

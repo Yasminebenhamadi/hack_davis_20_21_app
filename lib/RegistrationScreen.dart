@@ -2,21 +2,20 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hackdavis2021app/utilities/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:hackdavis2021app/utilities/constants.dart';
 
 import 'HobbiesScreen.dart';
 import 'customWidget/CustomButton.dart';
 
-class SignInScreen extends StatefulWidget {
-
-  static const String id = "SignInScreen";
-
+class RegistrationScreen extends StatefulWidget {
+   static const String id = "RegistrationScreen";
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _RegistrationScreenState createState() => _RegistrationScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
+
   bool showSpinner = false;
   final _auth = FirebaseAuth.instance;
   String email;
@@ -39,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> {
               Hero(
                 tag: "hero1",
                 child: TypewriterAnimatedTextKit(
-                  text: ['Sign In'],
+                  text: ['Register'],
                   textStyle: TextStyle(
                     color: Colors.black,
                     fontSize: 24.0,
@@ -51,6 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 48.0,
               ),
               TextField(
+
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
 
@@ -76,15 +76,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 24.0,
               ),
               CustomButton(
-                text: "Sign In",
-                color: Colors.yellow,
+                text: "Register",
+                color: Colors.lightBlue,
                 onPressed: () async {
                   print(email + password);
                   setState(() {
                     showSpinner = true;
                   });
                   try {
-                    final newUser = await _auth.signInWithEmailAndPassword(
+                    final newUser = await _auth.createUserWithEmailAndPassword(
                         email: email, password: password);
                     if(newUser != null)
                     {
