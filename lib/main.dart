@@ -1,12 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackdavis2021app/HomeScreen.dart';
+import 'package:hackdavis2021app/SignInPage.dart';
 import 'package:hackdavis2021app/SignInScreen.dart';
 import 'RegistrationScreen.dart';
 import 'package:hackdavis2021app/HobbiesScreen.dart';
 
-void main() async
-{
+import 'SignInScreen.dart';
+import 'SignInScreen.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -18,11 +21,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.light().copyWith( //this is where we specify the app's themem data
+      theme: ThemeData.light().copyWith(
+          //this is where we specify the app's themem data
           primaryColor: Color(0xFF0A0E21), //tab bar, top bar color
           accentColor: Color(0xFF3E3C3E),
           scaffoldBackgroundColor: Color(0xFF0A0E21),
-          textTheme: TextTheme(body1: TextStyle(color: Colors.white)),
           sliderTheme: SliderTheme.of(context).copyWith(
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
             overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
@@ -30,14 +33,13 @@ class MyApp extends StatelessWidget {
             activeTrackColor: Colors.pink,
             overlayColor: Color(0x29EB1555),
           )),
-      initialRoute: HomeScreen.id,
-      routes: { //this is list of route nagivating between different screens
+      initialRoute: SignInScreen.id,
+      routes: {
+        //this is list of route nagivating between different screens
         HomeScreen.id: (context) => HomeScreen(),
         SignInScreen.id: (context) => SignInScreen(),
         RegistrationScreen.id: (context) => RegistrationScreen(),
-        HobbyScreen.id: (context) => HobbyScreen()
-
-
+        HobbyScreen.id: (context) => HobbyScreen(),
       },
     );
   }
