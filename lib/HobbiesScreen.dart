@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hackdavis2021app/message.dart';
 import 'dart:developer';
 
 import 'SignInScreen.dart';
@@ -57,7 +58,11 @@ class _HobbyScreenState extends State<HobbyScreen> {
     return Scaffold(
       backgroundColor: Colors.grey[400],
       appBar: AppBar(
-        leading: IconButton(icon: Icon(Icons.ac_unit), onPressed: getuser),
+        leading: IconButton(
+            icon: Icon(Icons.message),
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => DisplayScreen(),
+                ))),
         backgroundColor: Colors.grey[700],
         title: Text(
           'Hobbies',
