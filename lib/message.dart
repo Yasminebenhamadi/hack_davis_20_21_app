@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'classes/outdoordata.dart';
@@ -19,15 +20,23 @@ class _DisplayScreenState extends State<DisplayScreen> {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   Stream<QuerySnapshot> _stream;
   int _currIndex = 0;
-  Future<OutdoorData> data;
+  OutdoorData _data;
+
+  getdata() async {
+    var data = await requestAPI();
+    setState(() {
+      _data = data;
+      print('data: $_data');
+    });
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _stream = _firestore.collection('Users').snapshots();
-    data = requestAPI();
-    log('data:$data');
+    getdata();
+    log('data:$_data');
   }
 
   @override
@@ -73,7 +82,51 @@ class _DisplayScreenState extends State<DisplayScreen> {
 
   List<Widget> getWidgetList() {
     return <Widget>[
-      Container(),
+      Container(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+              ),
+              child: Row(
+                children: [
+                  CircularProfileAvatar(
+                    '',
+                    backgroundColor: Colors.red[100],
+                    initialsText: Text(
+                      'U',
+                      style: TextStyle(fontSize: 60),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'User 1'.toUpperCase(),
+                        style: TextStyle(fontSize: 30),
+                      ),
+                      Text(
+                        'email@example.com',
+                        style: TextStyle(fontSize: 12),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // listContainer(),
+          ],
+        ),
+      ),
 //      CustomScrollView(
 //        slivers: <Widget>[
 //          SliverToBoxAdapter(
@@ -129,7 +182,10 @@ class _DisplayScreenState extends State<DisplayScreen> {
         child: Column(
           children: <Widget>[
             Card(
-              child: Text(data.toString()),
+              child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                      '${_data.content}. Current temperature is ${_data.temp}, covid cases number is ${_data.covidCases}, please avoid social gathering')),
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: Colors.white70, width: 1),
                 borderRadius: BorderRadius.circular(10),
@@ -156,6 +212,13 @@ class _DisplayScreenState extends State<DisplayScreen> {
                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
             ),
+            FlatButton(
+                onPressed: () {
+                  print(_data.temp);
+                  print(_data.content);
+                  print(_data.covidCases);
+                },
+                child: Text('press'))
           ],
         ),
       ),
@@ -169,6 +232,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
+      print('data fetched');
       return OutdoorData.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
