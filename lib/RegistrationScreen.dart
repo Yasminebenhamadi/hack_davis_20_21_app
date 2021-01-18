@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool showSpinner = false;
   bool showPassword = true;
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   TextEditingController _namecontroller = TextEditingController();
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
@@ -145,11 +147,37 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           String email = _emailcontroller.text.trim();
           String password = _passwordcontroller.text.trim();
           try {
-            await _auth.createUserWithEmailAndPassword(
-                email: email, password: password);
+            await _auth
+                .createUserWithEmailAndPassword(
+                    email: email, password: password)
+                .then((value) async {
+              print('adding user ${value.user.uid} to firestore.');
+              await _firestore.collection('Users').doc(value.user.uid).set({
+                'name': name,
+                'email': email,
+                'uid': value.user.uid,
+              });
+              print('added user to firestore.');
+            });
             Navigator.pushReplacementNamed(context, HobbyScreen.id);
           } catch (e) {
-            print(e.message.toString());
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: Text('ERROR'),
+                  content: Text(e.message.toString()),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text("Close"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              },
+            );
           }
         } else {
           print('Invalid form.');

@@ -1,12 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackdavis2021app/HomeScreen.dart';
-import 'package:hackdavis2021app/SignInPage.dart';
 import 'package:hackdavis2021app/SignInScreen.dart';
 import 'RegistrationScreen.dart';
 import 'package:hackdavis2021app/HobbiesScreen.dart';
-
-import 'SignInScreen.dart';
 import 'SignInScreen.dart';
 
 void main() async {
@@ -26,7 +23,6 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xFF0A0E21), //tab bar, top bar color
           accentColor: Color(0xFF3E3C3E),
           scaffoldBackgroundColor: Color(0xFF0A0E21),
-          textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
           sliderTheme: SliderTheme.of(context).copyWith(
             thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
             overlayShape: RoundSliderOverlayShape(overlayRadius: 30.0),
