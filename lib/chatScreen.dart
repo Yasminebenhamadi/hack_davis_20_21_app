@@ -34,9 +34,9 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Text(_receiver.name),
           ),
         ),
-        actions: [
-          //TODO
-        ],
+        /*actions: [
+          IconButton(icon: null, onPressed: null);
+        ],*/
       ),
       body: Column(
         children: [

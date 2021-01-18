@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hackdavis2021app/HomeScreen.dart';
-import 'package:hackdavis2021app/SignInPage.dart';
 import 'package:hackdavis2021app/SignInScreen.dart';
 import 'RegistrationScreen.dart';
 import 'package:hackdavis2021app/HobbiesScreen.dart';
