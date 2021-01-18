@@ -105,7 +105,6 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.send),
               iconSize: 25.0,
-              //TODO color
               onPressed: () {
                 if(_messageText.isNotEmpty){
                   _addMessage(Message(_messageText,'senderID','receiverID',DateTime.now(),false,false,false));
@@ -132,7 +131,7 @@ class _ChatScreenState extends State<ChatScreen> {
           right: 80.0
       ),
       decoration: BoxDecoration(
-        color: fromMe ? Color(0): Color (0) , //TODO
+        color: fromMe ? Colors.pinkAccent: Colors.blueGrey ,
       ),
       child: Column(
         children: [
